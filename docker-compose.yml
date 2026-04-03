@@ -1,0 +1,16 @@
+services:
+  matrix-bot:
+    build: .
+    container_name: matrix-bot
+    restart: unless-stopped
+    volumes:
+      - ./nio_store:/app/nio_store
+      - ./credentials.json:/app/credentials.json
+      - ./bot_data:/app/bot_data
+    networks:
+      - matrix_internal
+
+networks:
+  matrix_internal:
+    external: true
+    name: matrix_matrix_internal
